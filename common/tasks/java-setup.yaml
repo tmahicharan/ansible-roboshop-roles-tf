@@ -1,0 +1,10 @@
+- name: install maven
+  ansible.builtin.package:
+    name: maven
+    state: present
+
+- name: Installing dependencies
+  ansible.builtin.command: mvn clean package
+  args:
+    chdir: /app
+

@@ -1,0 +1,47 @@
+- name: app setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: app-setup.yaml
+
+- name: java setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: java-setup.yaml
+
+
+- name: install python libraries
+  ansible.builtin.pip:
+    executable: pip3.9
+    name: "{{item}}"
+  loop:
+    - cryptography
+    - pyMySQL
+
+- name: moving jar file
+  ansible.builtin.command: mv target/shipping-1.0.jar shipping.jar 
+  args:
+    chdir: /app
+
+- name: install mysql
+  ansible.builtin.package:
+   name: mysql
+   state: present
+
+- name: Import schema.sql
+  community.mysql.mysql_db:
+    state: import
+    name: all
+    login_host: mysql.mahidevops.fun
+    login_user: root
+    login_password: RoboShop@1
+    target: "{{item}}"
+  loop:
+  - /app/db/schema.sql
+  - /app/db/app-user.sql 
+  - /app/db/master-data.sql
+
+- name: system setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: system-setup.yaml
+
