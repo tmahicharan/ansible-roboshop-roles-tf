@@ -12,9 +12,9 @@
 - name: install mysql python libaries
   ansible.builtin.pip:
     executable: /usr/bin/pip3
-    name: {{ item }}
+    name: "{{ item }}"
   loop:
     - botocore
     - boto3
 - name: set password
-  ansible.builtin.command: mysql_secure_installation --set-root-pass {{ MYSQL_ROOT_PASSWORD }}
+  ansible.builtin.command: mysql_secure_installation --set-root-pass "{{ MYSQL_ROOT_PASSWORD }}"
