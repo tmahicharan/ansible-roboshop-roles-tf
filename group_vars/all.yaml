@@ -1,0 +1,9 @@
+MONGODB_HOST: mongodb-{{env}}.mahidevops.fun
+REDIS_HOST: redis-{{env}}.mahidevops.fun
+CATALOG_HOST: catalogue-{{env}}.mahidevops.fun
+CART_HOST: cart-{{env}}.mahidevops.fun
+MYSQL_HOST: mysql-{{env}}.mahidevops.fun
+USER_HOST: user-{{env}}.mahidevops.fun
+RABBITMQ_HOST: rabbitmq-{{env}}.mahidevops.fun
+SHIPPING_HOST: shipping-{{env}}.mahidevops.fun
+PAYMENT_HOST: payment-{{env}}.mahidevops.fun
